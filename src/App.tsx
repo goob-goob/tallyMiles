@@ -60,7 +60,7 @@ function App() {
         <section className='lg:w-1/4  h-full outline-teal-500'></section>
         <section className='w-5/6 mx-16 lg:ml-0 lg:w-1/2 h-full  outline-yellow-400 flex flex-col-reverse lg:flex-row items-center justify-center'>
           <section className=' outline-green-500 flex flex-col w-5/6 lg:w-1/3 h-full pt-2'>
-            <section>
+            <section className='flex lg:flex-col flex-col-reverse'>
               {Object.entries(sevenDaysEntries).map(([index, [key, value]]) => (
 
                 <section
