@@ -15,17 +15,20 @@ function App() {
 
   // console.log('entries', entries)
 
-  const things = Object.entries(entries).map(([key, value]) => [Number(key), value]).sort(([k1, v1], [k2, v2]) => k2 - k1)
+  let things = Object.entries(entries).map(([key, value]) => [Number(key), value]).sort(([k1], [k2]) => k2 - k1)
+  if(things.length < 30) {
+    things = things.slice(0, 30)
+  }
 
-  const sevenDaysEntries = things.filter(([key, value]) => key - MILLI_IN_SEVEN_DAYS).slice(0, 7)
+  const sevenDaysEntries = things.filter(([key]) => key - MILLI_IN_SEVEN_DAYS).slice(0, 7)
   // console.log('sevenDaysEntries', sevenDaysEntries)
-  const sevenDaysValues = sevenDaysEntries.map(([key, value]) => Number(value))
+  const sevenDaysValues = sevenDaysEntries.map(([_, value]) => Number(value))
   const sevenDaysTotal = sevenDaysValues.reduce((a, b) => a + b, 0)
   // console.log('sevenDaysTotal', sevenDaysTotal)
 
-  const thirtyDaysEntries = things.filter(([key, value]) => key - MILLI_IN_THIRTY_DAYS).slice(0, 30)
+  const thirtyDaysEntries = things.filter(([key]) => key - MILLI_IN_THIRTY_DAYS).slice(0, 30)
   // console.log('thirtyDaysEntries', thirtyDaysEntries)
-  const thirtyDaysValues = thirtyDaysEntries.map(([key, value]) => Number(value))
+  const thirtyDaysValues = thirtyDaysEntries.map(([_, value]) => Number(value))
   const thirtyDaysTotal = thirtyDaysValues.reduce((a, b) => a + b, 0)
   // console.log('sevenDaysTotal', sevenDaysTotal)
 
