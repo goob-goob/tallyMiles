@@ -32,8 +32,8 @@ function App() {
   const thirtyDaysTotal = thirtyDaysValues.reduce((a, b) => a + b, 0)
   // console.log('sevenDaysTotal', sevenDaysTotal)
 
-  let quarter = new Date().getMonth()
-  quarter = whatQuarter(quarter)
+  let quarter = whatQuarter(new Date().getMonth())
+  
   console.log('quarter, ', quarter, typeof quarter)
 
   console.log('new Date(key).getMonth()', new Date().getMonth())
