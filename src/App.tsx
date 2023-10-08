@@ -33,28 +33,11 @@ function App() {
   // console.log('sevenDaysTotal', sevenDaysTotal)
 
   let quarter = new Date()
-  quarter = quarter.getMonth()
+  quarter = whatQuarter(quarter)
   console.log('quarter, ', quarter, typeof quarter)
 
-  switch (quarter) {
-    case 1:
-    case 2:
-    case 3:
-      quarter = 1
-      break
-    case 4:
-    case 5:
-    case 6:
-      quarter = 2
-      break
-    case 7:
-    case 8:
-    case 9:
-      quarter = 3
-      break
-    default:
-      quarter = 4
-  }
+  console.log('new Date(key).getMonth()', new Date().getMonth())
+  console.log('new Date(key).getMonth()', whatQuarter(new Date().getMonth()))
 
   const quarterlyEntries = things.filter(([key]) => whatQuarter(new Date(key).getMonth()) == quarter)
   console.log('quarterlyEntries', quarterlyEntries)
@@ -63,19 +46,19 @@ function App() {
 
   function whatQuarter(x) {
     switch (x) {
+      case 0:
       case 1:
       case 2:
-      case 3:
         return 1
         break
+      case 3:
       case 4:
       case 5:
-      case 6:
         return 2
         break
+      case 6:
       case 7:
       case 8:
-      case 9:
         return 3
         break
       default:
