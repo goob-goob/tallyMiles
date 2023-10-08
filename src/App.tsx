@@ -107,14 +107,14 @@ function App() {
 
   return (
 
-    <div className='text-white w-screen h-screen flex items-center bg-gray-900'>
+    <div className='text-white w-screen h-screen flex justify-center flex-col bg-gray-900'>
 
       <section className='-w-full flex  text-3xl'>
         <section className='lg:w-1/4  h-full outline-teal-500'></section>
         <section className='w-full lg:ml-0  h-full  outline-yellow-400 flex bg-gray-900 flex-col-reverse lg:flex-row items-center justify-center'>
           <section className=' outline-green-500 flex flex-col w-5/6 lg:w-1/3 h-full pt-4'>
             <section className='flex lg:flex-col flex-col-reverse '>
-              {Object.entries(sevenDaysEntries.slice(0, 7)).map(([index, [key, value]]) => (
+              {Object.entries(sevenDaysEntries.slice(0, 8)).map(([index, [key, value]]) => (
 
                 <section
                   className='lg:h-10 bg-white text-black text-6xl lg:text-3xl my-2 rounded-lg pl-4'
