@@ -20,7 +20,7 @@ function App() {
   const today = Date.now()
   console.log('today = ', today)
 
-  const sevenDaysEntries = things.filter(([key]) => key + MILLI_IN_SEVEN_DAYS > today - MILLI_IN_SEVEN_DAYS  )
+  const sevenDaysEntries = things.filter(([key]) => key + MILLI_IN_SEVEN_DAYS > today - MILLI_IN_SEVEN_DAYS)
   console.log('sevenDaysEntries', sevenDaysEntries)
   const sevenDaysValues = sevenDaysEntries.map(([_, value]) => Number(value))
   const sevenDaysTotal = sevenDaysValues.reduce((a, b) => a + b, 0)
@@ -32,9 +32,57 @@ function App() {
   const thirtyDaysTotal = thirtyDaysValues.reduce((a, b) => a + b, 0)
   // console.log('sevenDaysTotal', sevenDaysTotal)
 
-  const quarterlyEntries = things.filter
-  const quarterlyValues = ''
-  const quarterlyTotal = ''
+  let quarter = new Date()
+  quarter = quarter.getMonth()
+  console.log('quarter, ', quarter, typeof quarter)
+
+  switch (quarter) {
+    case 1:
+    case 2:
+    case 3:
+      quarter = 1
+      break
+    case 4:
+    case 5:
+    case 6:
+      quarter = 2
+      break
+    case 7:
+    case 8:
+    case 9:
+      quarter = 3
+      break
+    default:
+      quarter = 4
+  }
+
+  const quarterlyEntries = things.filter(([key]) => whatQuarter(new Date(key).getMonth()) == quarter)
+  console.log('quarterlyEntries', quarterlyEntries)
+  const quarterlyValues = quarterlyEntries.map(([_, value]) => Number(value))
+  const quarterlyTotal = quarterlyValues.reduce((a, b) => a + b, 0)
+
+  function whatQuarter(x) {
+    switch (x) {
+      case 1:
+      case 2:
+      case 3:
+        return 1
+        break
+      case 4:
+      case 5:
+      case 6:
+        return 2
+        break
+      case 7:
+      case 8:
+      case 9:
+        return 3
+        break
+      default:
+        return 4
+        break
+    }
+  }
 
   function addEntry(e) {
 
@@ -90,7 +138,7 @@ function App() {
               <section className='outline-blue-500  flex w-full justify-center'>
                 <section className='w-1/2 lg:h-1/6  outline-orange-500 mb-4 pl-4 pt-4 text-5xl flex flex-col items-center'>
                   <h1>Quarterly</h1>
-                  <p>{sevenDaysTotal}</p>
+                  <p>{quarterlyTotal}</p>
                 </section>
               </section>
               <section className='w-full outline-yellow-600  flex items-center'>
