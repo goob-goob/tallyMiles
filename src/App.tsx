@@ -8,6 +8,7 @@ function App() {
   const MILLI_IN_SEVEN_DAYS = MILLI_IN_DAY * 7
   const MILLI_IN_THIRTY_DAYS = MILLI_IN_DAY * 30
 
+
   const input = document.getElementById('goob-input')
 
   const [x, setX] = useState('')
@@ -16,7 +17,7 @@ function App() {
   // console.log('entries', entries)
 
   let things = Object.entries(entries).map(([key, value]) => [Number(key), value]).sort(([k1], [k2]) => k2 - k1)
-  if(things.length < 30) {
+  if (things.length < 30) {
     things = things.slice(0, 30)
   }
 
@@ -32,8 +33,10 @@ function App() {
   const thirtyDaysTotal = thirtyDaysValues.reduce((a, b) => a + b, 0)
   // console.log('sevenDaysTotal', sevenDaysTotal)
 
+  const quarterlyValues = ''
+
   function addEntry(e) {
-  
+
     const key = Date.now()
     const value = x
     localStorage.setItem(key, value)
@@ -55,15 +58,13 @@ function App() {
 
   return (
 
-    <div className='bg-black text-white w-screen h-screen'>
-      <section className='w-screen h-1/4 outline-white'>\
-        {/* <h1>header?</h1> */}
-      </section>
-      <section className='w-full h-1/2 flex text-3xl'>
+    <div className='text-white w-screen h-screen flex items-center bg-gray-900'>
+
+      <section className='-w-full flex  text-3xl'>
         <section className='lg:w-1/4  h-full outline-teal-500'></section>
-        <section className='w-5/6 mx-16 lg:ml-0 lg:w-1/2 h-full  outline-yellow-400 flex flex-col-reverse lg:flex-row items-center justify-center'>
-          <section className=' outline-green-500 flex flex-col w-5/6 lg:w-1/3 h-full pt-2'>
-            <section className='flex lg:flex-col flex-col-reverse'>
+        <section className='w-full lg:ml-0  h-full  outline-yellow-400 flex bg-gray-900 flex-col-reverse lg:flex-row items-center justify-center'>
+          <section className=' outline-green-500 flex flex-col w-5/6 lg:w-1/3 h-full pt-4'>
+            <section className='flex lg:flex-col flex-col-reverse '>
               {Object.entries(sevenDaysEntries).map(([index, [key, value]]) => (
 
                 <section
@@ -83,22 +84,30 @@ function App() {
             </button>
             {/* <button className='bg-red outline-blue-500 outline h-6'>Other button</button> */}
           </section>
-          <section className='outline-purple-500  w-1/2 lg:w-1/3 h-full'>
-            <section className='w-full lg:h-1/6  outline-orange-500 mb-4 pl-4 pt-4 text-5xl'>
-              <h1>Last 7 Days</h1>
-              <p>{sevenDaysTotal}</p>
-            </section>
-            <section className='w-full lg:h-1/6  outline-orange-500 pl-4 mb-4 text-5xl'>
-              <h1>Last 30 Days</h1>
-              <p>{thirtyDaysTotal}</p>
+          <section className='outline-purple-500  w-full bg-gray-700 bg-opacity-40 lg:w-1/3 h-full flex justify-center'>
+            <section className='outline-yellow-500  w-5/6 '>
+              <section className='outline-blue-500  flex w-full justify-center'>
+                <section className='w-1/2 lg:h-1/6  outline-orange-500 mb-4 pl-4 pt-4 text-5xl flex flex-col items-center'>
+                  <h1>Quarterly</h1>
+                  <p>{sevenDaysTotal}</p>
+                </section>
+              </section>
+              <section className='w-full outline-yellow-600  flex items-center'>
+                <section className=' lg:h-1/6  outline-orange-500 mb-4 pl-4 lg:pt-4 text-5xl flex-1 flex flex-col items-center'>
+                  <h1>7 Days</h1>
+                  <p>{sevenDaysTotal}</p>
+                </section>
+                <section className=' lg:h-1/6  outline-orange-500 pl-4 mb-4 text-5xl flex-1 flex flex-col items-center'>
+                  <h1>30 Days</h1>
+                  <p>{thirtyDaysTotal}</p>
+                </section>
+              </section>
             </section>
           </section>
         </section>
         <section className='lg:w-1/4 h-full outline-teal-500'></section>
       </section>
-      <section className='w-screen h-1/4 outline-white'>
-        {/* <h1>Footer?</h1> */}
-      </section>
+
     </div>
 
   )
